@@ -1,0 +1,23 @@
+@startuml use case
+ left to right direction
+ actor "ChargeVente" as CV
+
+   skinparam packageStyle rectangle
+    package "Use case ChargeVente" {
+
+        
+        CV -->(Lister Ventes)
+        CV -->(Enregistrer Ventes)
+
+        (Lister Ventes) -->(lister Produit)
+
+        
+        (Lister Ventes) ..> (Se connecter):<<include>>
+        (Voir Statistique) ..> (Se connecter):<<include>>
+        (Enregistrer Ventes) ..> (Se connecter):<<include>>
+       
+    }
+  
+
+
+@enduml
