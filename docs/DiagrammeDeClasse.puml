@@ -1,0 +1,97 @@
+@startuml use case
+ class User{
+    idUser 
+    nom 
+    prenom 
+    password
+    email
+    role
+ }
+  class Client{
+    idClient 
+    nom 
+    prenom 
+    telephone
+    limitCredit
+   
+ }
+ class Fournisseur{
+    idFournisseur
+    nomEntreprise 
+    telephone
+    adresseDepot
+    email 
+   
+ }
+ 
+ class Approvissionnement{
+    idApprovissionnement
+    refBl 
+    valeurLot
+    statut
+
+ }
+  class ligneAppro{
+    idApprovissionnement
+    qteAppro
+    qteRecu
+    prixAchat
+    sousTotal
+
+ }
+
+ class Vente{
+    idVente
+    prixVente
+    montantVerser
+ }
+
+ class ligneVente{
+    idLigneVente
+    qtevendue
+    prixvente
+    sousTotal
+ }
+ class Dette{
+    idDette
+    dateCreation
+    montantDu
+    statut
+ }
+  class Produit{
+    idProduit
+    libelle
+    qteStock
+    prix
+    
+ }
+  class Paiement{
+    idPaiement
+    montantPayer
+    
+ }
+   class ModedePaiement{
+    idModedePaiement
+    libelle
+    
+ }
+
+User "1"--"0..*"Client
+User "1"--"0..*"Fournisseur
+User "1"--"0..*"Produit
+
+
+ligneVente "0..*"--"1"Produit
+Vente "1"--"0..*"ligneVente
+Paiement "0..*"--"1"ModedePaiement
+Fournisseur "1"--"0..*"Approvissionnement
+Approvissionnement "1"--"0..*"ligneAppro
+ligneAppro "0..*"--"1"Produit
+
+
+Vente "1"--"0..1"Dette
+Client "1"--"0..*"Vente
+Vente "1"--"0.."Paiement
+
+
+@enduml

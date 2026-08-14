@@ -1,0 +1,32 @@
+@startuml use case
+ left to right direction
+ actor "ChargerStock" as CS
+
+   skinparam packageStyle rectangle
+    package "Use case ChargerStock" {
+
+        CS -->(Voir Statistique)
+        CS -->(Lister Approvisionnement)
+        CS -->(Lister Ventes)
+        CS -->(Lister Fournisseurs)
+        CS -->(Lister Articles)
+        CS -->(Enregistrer Client)
+        CS -->(Enregistrer Article)
+        CS -->(Enregistrer Fournisseur)
+
+
+        (Lister Approvisionnement) <.. (Voir ligne):<<extend>>
+        (Lister Articles) <.. (Rechercher Produit):<<extend>>
+        (Lister Approvisionnement) <.. (Receptionner Approvisionnement):<<extend>>
+
+
+        (Lister Approvisionnement) ..> (Se connecter):<<include>>
+        (Enregistrer Client) ..> (Se connecter):<<include>>
+        (Enregistrer Fournisseur) ..> (Se connecter):<<include>>
+        (Voir Statistique) ..> (Se connecter):<<include>>
+       
+    }
+  
+
+
+@enduml
