@@ -1,0 +1,56 @@
+@startuml use case
+ left to right direction
+ actor "AdminBoutique" as AB
+
+   skinparam packageStyle rectangle
+    package "Use case AdminBoutique" {
+
+        AB -->(Voir Statistique)
+        AB -->(Lister Approvisionnement)
+        AB -->(Lister Ventes)
+        AB -->(Lister Fournisseurs)
+        AB -->(Lister Articles)
+        AB -->(Enregistrer Approvisionnement)
+        AB -->(Enregistrer Client)
+        AB -->(Enregistrer Article)
+        AB -->(Enregistrer Fournisseur)
+        AB -->(Lister Dettes)
+        AB -->(Afficher Produit en Rupture et alerte)
+        AB -->(Facturation / Cumul par Fournisseur)
+
+
+        (Lister Approvisionnement) <.. (Voir ligne):<<extend>>
+        (Lister Articles) <.. (Rechercher Produit):<<extend>>
+        (Lister Approvisionnement) <.. (Receptionner Approvisionnement):<<extend>>
+
+        (Lister Dettes) <.. (Voir articles):<<extend>>
+        (Lister Dettes) <.. (Voir Paiement):<<extend>>
+        (Lister Dettes) <.. (Rembourser dette):<<extend>>
+        (Lister Ventes) <.. (Voir ligne vente):<<extend>>
+
+        
+        (Afficher Produit en Rupture et alerte) ..> (Demander Approvisionnement):<<include>>
+        (Demander Approvisionnement) <.. (Valider Bl):<<extend>>
+
+
+       
+        
+        (Lister Approvisionnement) ..> (Se connecter):<<include>>
+        (Enregistrer Client) ..> (Se connecter):<<include>>
+        (Enregistrer Fournisseur) ..> (Se connecter):<<include>>
+        (Afficher Produit en Rupture et alerte) ..> (Se connecter):<<include>>
+        (Voir Statistique) ..> (Se connecter):<<include>>
+        (Lister Dettes) ..> (Se connecter):<<include>>
+
+
+
+
+
+
+
+       
+    }
+  
+
+
+@enduml

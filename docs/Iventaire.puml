@@ -1,0 +1,38 @@
+@startuml use case
+ left to right direction
+ actor "Inventaire" as I
+
+   skinparam packageStyle rectangle
+    package "Use case Inventaire" {
+
+        I -->(Voir Statistique)
+        I -->(Lister Fournisseurs)
+        I -->(Lister Articles)
+        I -->(Lister Client)
+        I -->(Enregistrer Client)
+        I -->(Enregistrer Article)
+        I -->(Enregistrer Fournisseur)
+
+
+        (Lister Articles) <.. (Rechercher Produit):<<extend>>
+
+       
+
+        
+        (Enregistrer Client) ..> (Se connecter):<<include>>
+        (Enregistrer Fournisseur) ..> (Se connecter):<<include>>
+        (Voir Statistique) ..> (Se connecter):<<include>>
+        (Lister Client) ..> (Se connecter):<<include>>
+
+
+
+
+
+
+
+       
+    }
+  
+
+
+@enduml
