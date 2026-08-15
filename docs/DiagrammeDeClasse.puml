@@ -12,6 +12,7 @@
     nom 
     prenom 
     telephone
+    email
     limitCredit
    
  }
@@ -42,7 +43,7 @@
 
  class Vente{
     idVente
-    prixVente
+    montantTotal
     montantVerser
  }
 
@@ -55,8 +56,8 @@
  class Dette{
     idDette
     dateCreation
-    montantDu
-    statut
+    montantInitial 
+    montantVerser
  }
   class Produit{
     idProduit
@@ -75,10 +76,18 @@
     libelle
     
  }
+ class Role{
+     id_role
+     etat 
+ }
+     
+
+
 
 User "1"--"0..*"Client
 User "1"--"0..*"Fournisseur
 User "1"--"0..*"Produit
+User "0..*"--"1"Role
 
 
 ligneVente "0..*"--"1"Produit
