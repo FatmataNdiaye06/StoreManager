@@ -4,8 +4,7 @@ class Approvisionnement{
     private int $idApprovisionnement ;
     private string $refBl ;
     private float $valeurLot; 
-    private string $statut ;
-    private Fournisseur $idFournisseur;
+    private Fournisseur $fournisseur;
 
     public function getIdApprovisionnement(): int {
         return $this->idApprovisionnement;
@@ -19,12 +18,8 @@ class Approvisionnement{
         return $this->valeurLot;
     }
 
-    public function getStatut(): string {
-        return $this->statut;
-    }
-
-    public function getIdFournisseur(): Fournisseur {
-        return $this->idFournisseur;
+    public function getFournisseur(): Fournisseur {
+        return $this->fournisseur;
     }
 
     public function setRefBl(string $refBl): void {
@@ -41,15 +36,17 @@ class Approvisionnement{
         $this->valeurLot = $valeurLot;
     }
 
-    public function setStatut(string $statut): void {
-        if (empty(trim($statut))) {
-            throw new Exception("Le statut ne peut pas être vide.");
-        }
-        $this->statut = $statut;
-    }
-      public function setIdFournisseur(Fournisseur $fournisseur): void {
-        $this->idFournisseur = $fournisseur;
+    public function setFournisseur(Fournisseur $fournisseur): void {
+        $this->fournisseur = $fournisseur;
     }
 
+     public function __construct(int $idApprovisionnement,string $refBl,float $valeurLot,
+     Fournisseur $fournisseur)
+   {
+      $this->setRefBl($refBl);
+      $this->setValeurLot($valeurLot);
+      $this->setFournisseur($fournisseur);
+
+   }
 }
 

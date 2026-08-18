@@ -29,7 +29,7 @@ class Utilisateur{
         return $this->password;
     }
 
-    public function getRole(): string {
+    public function getRole(): Role {
         return $this->role;
     }
 
@@ -62,11 +62,19 @@ class Utilisateur{
         $this->password = $password;
     }
 
-    public function setRole(string $role): void {
-        if (empty($role)) {
-            throw new Exception("Le rôle est obligatoire.");
-        }
+    public function setRole(Role $role): void {
         $this->role = $role;
     }
+    
+    public function __construct(string $nom,string $prenom,string $password,
+        string $email,Role $role)
+   {
+      $this->setNom($nom);
+      $this->setPrenom($prenom);
+      $this->setPassword($password);
+      $this->setEmail($email);
+      $this->setRole($role);
+
+   }
 }
 

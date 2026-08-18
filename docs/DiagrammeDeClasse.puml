@@ -29,7 +29,6 @@
     idApprovissionnement
     refBl 
     valeurLot
-    statut
 
  }
   class ligneAppro{

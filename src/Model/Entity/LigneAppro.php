@@ -5,10 +5,10 @@ class LigneAppro{
    private int $qteRecu ; 
    private float $prixAchat ; 
    private float $sousTotal ; 
-   private Approvisionnement $idApprovisionnement ;
-   private Produit $idProduit;
+   private Approvisionnement $approvisionnement ;
+   private Produit $produit;
 
-   public function getIdLigneAppro(): ?int {
+   public function getIdLigneAppro(): int {
         return $this->idLigneAppro;
     }
 
@@ -29,11 +29,11 @@ class LigneAppro{
     }
 
     public function getApprovisionnement(): Approvisionnement {
-        return $this->idApprovisionnement;
+        return $this->approvisionnement;
     }
 
     public function getProduit(): Produit {
-        return $this->idProduit;
+        return $this->produit;
     }
 
 
@@ -57,12 +57,28 @@ class LigneAppro{
         }
         $this->prixAchat = $prixAchat;
     }
-
-     public function setApprovisionnement(Approvisionnement $idApprovisionnement): void {
-        $this->idApprovisionnement = $idApprovisionnement;
+    private function setSousTotal(float $prixAchat,int $qteAppro): void {
+            $this->setPrixAchat($prixAchat);
+            $this->setQteAppro($qteAppro);
+            $this->sousTotal=$this->prixAchat * $this->qteAppro;
+      
+    }
+     public function setApprovisionnement(Approvisionnement $approvisionnement): void {
+        $this->approvisionnement = $approvisionnement;
     }
 
-    public function setProduit(Produit $idProduit): void {
-        $this->idProduit = $idProduit;
+    public function setProduit(Produit $produit): void {
+        $this->produit = $produit;
+    }
+
+    public function __construct(int $qteAppro,int $qteRecu,float $prixAchat,
+    Approvisionnement $approvisionnement,Produit $produit){
+
+        $this->setQteRecu($qteRecu);
+        $this->setApprovisionnement($approvisionnement);
+        $this->setProduit($produit);
+        $this->setSousTotal($prixAchat, $qteAppro);
+
     }
 }
+

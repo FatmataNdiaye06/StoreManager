@@ -44,6 +44,7 @@ class Produit{
     }
 
     public function __construct(?int $idProduit = null,string $libelle="",int $qteStock=0,float $prix){
+        $this->idProduit = $idProduit;
         $this->setPrix($prix);
         $this->setLibelle($libelle);
         $this->setQteStock($qteStock);
@@ -57,6 +58,6 @@ class Produit{
 }
 
 
-$produit= new Produit(1,"Lait",2,3000);
-var_dump($produit);die;
+// $produit= new Produit(1,"Lait",2,3000);
+// var_dump($produit);die;
 

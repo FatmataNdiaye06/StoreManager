@@ -6,7 +6,7 @@ class Fournisseur{
    private string $telephone;
    private string $email;
    private string $adresse;
-   private Utilisateur $idUtilisateur;
+   private Utilisateur $utilisateur;
 
 
   public function getIdFournisseur():int{
@@ -25,8 +25,8 @@ class Fournisseur{
       return $this->adresse;
    }
    
-    public function getIdUtilisateur():Utilisateur{
-      return $this->IdUtilisateur;
+    public function getUtilisateur():Utilisateur{
+      return $this->utilisateur;
    }
    public function setNomEntreprise(string $nomEntreprise):void{
       if (empty($nomEntreprise)) {
@@ -53,19 +53,19 @@ class Fournisseur{
         }
         $this->email = $email;
     }
-    public function setIdUtilisateur(Utilisateur $IdUtilisateur):void{
-      $this->IdUtilisateur=$IdUtilisateur;
+    public function setUtilisateur(Utilisateur $utilisateur):void{
+      $this->utilisateur=$utilisateur;
    }
    
 
    public function __construct(string $nomEntreprise,string $telephone,
-    string $email,string $adresse, Utilisateur $IdUtilisateur)
+    string $email,string $adresse, Utilisateur $utilisateur)
    {
       $this->setNomEntreprise($nomEntreprise);
       $this->setTelephone($telephone);
       $this->setEmail($email);
       $this->setAdresse($adresse);
-      $this->setIdUtilisateur($IdUtilisateur);
+      $this->setIdUtilisateur($utilisateur);
 
    }
 }

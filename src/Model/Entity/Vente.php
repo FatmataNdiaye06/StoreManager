@@ -2,9 +2,10 @@
 
 class Vente{
     private int $idVente;
-    private float $montantTotal;
+    private float $montantTotal=0;
     private float $montantVerser;
-    private Client $idClient;
+    private Client $client;
+    private array $lignesVentes=[];
 
 
     public function getIdVente(): int {
@@ -12,6 +13,10 @@ class Vente{
     }
 
     public function getMontantTotal(): float {
+        $this->montantTotal=0;
+        foreach ($this->lignesVentes as $ligne) {
+            $this->montantTotal+=$ligne->getSousTotal();
+        }
         return $this->montantTotal;
     }
 
@@ -20,15 +25,13 @@ class Vente{
     }
 
     public function getClient(): Client {
-        return $this->idClient;
+        return $this->client;
+    }
+     public function getResteAPayer(): float {
+        return $this->getMontantTotal() - $this->montantVerser;
     }
 
-    public function setMontantTotal(float $montantTotal): void {
-        if ($montantTotal < 0) {
-            throw new Exception("Le montant total doit être supérieur ou égal à zéro.");
-        }
-        $this->montantTotal = $montantTotal;
-    }
+   
 
     public function setMontantVerser(float $montantVerser): void {
         if ($montantVerser < 0) {
@@ -37,11 +40,20 @@ class Vente{
         
         $this->montantVerser = $montantVerser;
     }
-
-    public function setIdClient(Client $idClient): void {
-        $this->idClient = $idClient;
+    public function ajouterLigneVente(LigneVente $ligne): void {
+        $this->lignesVentes[] = $ligne;
     }
 
+    public function setClient(Client $client): void {
+        $this->client = $client;
+    }
+
+     public function __construct(float $montantVerser,Client $client){
+
+        $this->setMontantVerser($montantVerser);
+        $this->setClient($client);
+
+    }
 }
 
 

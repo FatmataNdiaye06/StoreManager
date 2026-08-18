@@ -2,8 +2,8 @@
 class Paiement{
    private int $idPaiement;    
    private float $montantPayer;   
-   private Vente $idVente;  
-   private ModeDePaiement $idModePaiement;
+   private Vente $vente;  
+   private ModeDePaiement $modePaiement;
 
 
     public function getIdPaiement(): int {
@@ -14,12 +14,12 @@ class Paiement{
         return $this->montantPayer;
     }
 
-    public function getIdVente(): Vente {
-        return $this->idVente;
+    public function getvente(): Vente {
+        return $this->vente;
     }
 
-    public function getIdModePaiement(): ModeDePaiement {
-        return $this->idModePaiement;
+    public function getModePaiement(): ModeDePaiement {
+        return $this->modePaiement;
     }
 
 
@@ -30,12 +30,20 @@ class Paiement{
         $this->montantPayer = $montantPayer;
     }
 
-     public function setVente(Vente $idVente): void {
-        $this->idVente = $idVente;
+     public function setVente(Vente $vente): void {
+        $this->vente = $vente;
     }
 
-    public function setModePaiement(ModeDePaiement $idModePaiement): void {
-        $this->idModePaiement = $idModePaiement;
+    public function setModePaiement(ModeDePaiement $modePaiement): void {
+        $this->modePaiement = $modePaiement;
+    }
+
+     public function __construct(float $montantPayer,Vente $vente,ModeDePaiement $modePaiement){
+
+        $this->setMontantPayer($montantPayer);
+        $this->setVente($vente);
+        $this->setModePaiement($modePaiement);
+
     }
 }
 

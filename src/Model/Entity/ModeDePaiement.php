@@ -2,7 +2,7 @@
 
 class ModeDePaiement{
    private int $idModePaiement;
-   private float $libelle;
+   private string $libelle;
 
    public function getIdModePaiement(): int {
         return $this->idModePaiement;
@@ -15,11 +15,15 @@ class ModeDePaiement{
    
     public function setLibelle(string $libelle): void {
         if (empty($libelle)) {
-            throw new Exception("Le libellé du rôle ne peut pas être vide.");
+            throw new Exception("Le libellé est obligatoire.");
         }
         $this->libelle =$libelle;
     }
 
+    public function __construct(string $libelle){
+
+        $this->setLibelle($libelle);
+    }
    
 
 }

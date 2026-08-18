@@ -1,5 +1,5 @@
 CREATE TABLE Utilisateur (
-    id_utilisateur INTEGER PRIMARY KEY,
+    id_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT,
     nom TEXT NOT NULL,
     prenom TEXT NOT NULL,
     password TEXT NOT NULL,
@@ -37,10 +37,11 @@ CREATE TABLE produit (
     id_produit INTEGER PRIMARY KEY ,
     libelle TEXT NOT NULL,
     qte_stock INTEGER NOT NULL CHECK (qte_stock >= 0),
-    prix NUMERIC NOT NULL CHECK (prix > 0),
-    id_utilisateur INTEGER NOT NULL,
-    FOREIGN KEY (id_utilisateur) REFERENCES Utilisateur(id_utilisateur)
+    prix NUMERIC NOT NULL CHECK (prix > 0)
 );
+
+INSERT INTO produit(libelle,qte_stock,prix)
+VALUES('Lait',50,1000),('Chips',100,100),('Pain',200,125);
 
 CREATE TABLE vente (
     id_vente INTEGER PRIMARY KEY , 
@@ -87,7 +88,6 @@ CREATE TABLE approvisionnement (
     id_approvisionnement INTEGER PRIMARY KEY,
     ref_bl TEXT NOT NULL,
     valeur_lot NUMERIC NOT NULL CHECK (valeur_lot >= 0),
-    statut TEXT NOT NULL,
     id_fournisseur INTEGER NOT NULL,
     FOREIGN KEY (id_fournisseur) REFERENCES fournisseur(id_fournisseur)
 );

@@ -31,8 +31,9 @@ CREATE TABLE produit (
     libelle VARCHAR(30) NOT NULL,
     qte_stock INT NOT NULL CHECK (qte_stock >= 0), 
     prix NUMERIC(12, 2) NOT NULL CHECK (prix > 0), 
-    id_utilisateur INT NOT NULL REFERENCES Utilisateur(id_utilisateur)
 );
+INSERT INTO produit(libelle,qte_stock,prix)
+VALUES('Lait',50,1000),('Chips',100,100),('Pain',200,125);
 
 CREATE TABLE vente (
     id_vente SERIAL PRIMARY KEY, 
@@ -74,7 +75,6 @@ CREATE TABLE approvisionnement (
     id_approvisionnement SERIAL PRIMARY KEY,
     ref_bl VARCHAR(50) NOT NULL,
     valeur_lot NUMERIC(12, 2) NOT NULL CHECK (valeur_lot >= 0), 
-    statut VARCHAR(30) NOT NULL,
     id_fournisseur INT NOT NULL REFERENCES fournisseur(id_fournisseur) 
 );
 
@@ -94,3 +94,7 @@ CREATE TABLE role(
      etat VARCHAR(50) NOT NULL
 );
 
+
+SELECT * FROM produit;
+DELETE FROM produit 
+WHERE id_produit = 1;

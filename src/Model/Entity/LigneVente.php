@@ -5,8 +5,8 @@ class LigneVente{
    private int $qteVendue;
    private float $prixVente;
    private float $sousTotal;
-   private Vente $idVente;
-   private Produit $idProduit;
+   private Vente $vente;
+   private Produit $produit;
 
    public function getIdLigneVente(): ?int {
         return $this->idLigneVente;
@@ -24,12 +24,12 @@ class LigneVente{
         return $this->sousTotal;
     }
 
-    public function getIdVente(): Vente {
-        return $this->idVente;
+    public function getvente(): Vente {
+        return $this->vente;
     }
 
-    public function getIdProduit(): Produit {
-        return $this->idProduit;
+    public function getproduit(): Produit {
+        return $this->produit;
     }
 
     
@@ -46,14 +46,26 @@ class LigneVente{
         }
         $this->prixVente = $prixVente;
     }
-
-    public function setVente(Vente $idVente): void {
-        $this->idVente = $idVente;
+ private function setSousTotal(float $prixVente,int $qteVendue): void {
+            $this->setPrixVente($prixVente);
+            $this->setQteVendue($qteVendue);
+            $this->sousTotal=$this->prixVente * $this->qteVendue;
+      
+    }
+    public function setVente(Vente $vente): void {
+        $this->vente = $vente;
     }
 
-    public function setProduit(Produit $idProduit): void {
-        $this->idProduit = $idProduit;
+    public function setProduit(Produit $produit): void {
+        $this->produit = $produit;
     }
 
+  public function __construct(int $qteVendue,float $prixVente,
+    Vente $vente,Produit $produit){
 
+        $this->setSousTotal($prixVente, $qteVendue);
+        $this->setVente($vente);
+        $this->setProduit($produit);
+
+    }
 }

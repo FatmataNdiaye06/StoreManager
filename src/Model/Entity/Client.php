@@ -7,7 +7,7 @@ class Client{
    private string $telephone;
    private string $email;
    private float $limitCredit;
-   private Utilisateur $idUtilisateur;
+   private Utilisateur $utilisateur;
 
 
    public function getIdClient():int{
@@ -28,8 +28,8 @@ class Client{
    public function getLimitCredit():float{
       return $this->limitCredit;
    }
-    public function getIdUtilisateur():Utilisateur{
-      return $this->IdUtilisateur;
+    public function getUtilisateur():Utilisateur{
+      return $this->utilisateur;
    }
    public function setNom(string $nom):void{
       if (empty($nom)) {
@@ -55,8 +55,8 @@ class Client{
         }
         $this->email = $email;
     }
-     public function setIdUtilisateur(Utilisateur $IdUtilisateur):void{
-      $this->IdUtilisateur=$IdUtilisateur;
+     public function setUtilisateur(Utilisateur $utilisateur):void{
+      $this->utilisateur=$utilisateur;
    }
    public function setLimiteCredit(float $limitCredit):void{
       if ($limitCredit<0) {
@@ -66,14 +66,14 @@ class Client{
    }
 
    public function __construct(int $idClient,string $nom,string $prenom,string $telephone,
-    string $email,float $limitCredit, Utilisateur $IdUtilisateur)
+    string $email,float $limitCredit, Utilisateur $utilisateur)
    {
       $this->setNom($nom);
       $this->setPrenom($prenom);
       $this->setTelephone($telephone);
       $this->setEmail($email);
       $this->setLimiteCredit($limitCredit);
-      $this->setIdUtilisateur($IdUtilisateur);
+      $this->setIdUtilisateur($utilisateur);
 
    }
 
