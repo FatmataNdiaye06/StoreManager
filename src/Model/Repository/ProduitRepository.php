@@ -1,25 +1,24 @@
 <?php
 
-require_once dirname(__DIR__)."/Entity/Produit.php";
-require_once "UsePdoRepository.php";
+// require_once dirname(__DIR__)."/Entity/Produit.php";
+// require_once "UsePdoRepository.php";
 
-
+namespace App\Model\Repository;
+use App\Entity\Produit;
  class ProduitRepository{
-   private UsePdoRepository $pdoRepo;
-    public function __construct(){
-         $this->pdoRepo= new UsePdoRepository();  
+    private function __construct(){
     }
-    public function getAllProduits():array{
+    public static function getAllProduits():array{
         $sql="SELECT * FROM produit";
-        $produits=$this->pdoRepo->query($sql,false); 
-        $ObjectProduits=$this->arrayToObject($produits);
+        $produits=DATABASE::query($sql, false); 
+        
+        $ObjectProduits=self::arrayToObject($produits);
 
         return $ObjectProduits;   
  
     } 
 
-    
-     public function arrayToObject(array $array):array{
+    public static function arrayToObject(array $array):array{
          $ObjectProduits=[];                                          
          foreach ($array as $ligne){
              $ObjectProduits[] = new Produit((int)$ligne['id_produit'],
@@ -32,6 +31,6 @@ require_once "UsePdoRepository.php";
 }
 
 
- $repo = new ProduitRepository();
- $liste = $repo->getAllProduits();
+ 
+ $liste = ProduitRepository::getAllProduits();
  var_dump($liste);die;
